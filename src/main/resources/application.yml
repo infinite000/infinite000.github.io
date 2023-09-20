@@ -1,0 +1,27 @@
+server:
+  port: 8000
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #如果是高版本的驱动类注意参数加上时区 时区一致
+    url: jdbc:mysql://localhost:3306/eyegod?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: 12345
+    type: com.alibaba.druid.pool.DruidDataSource
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package: com.soft.bean
+  configuration:
+    map-underscore-to-camel-case: true #关闭驼峰标识
+
+#开启或关闭Swagger
+swagger:
+  enable: true
+
+logging:
+  level:
+    com.soft.mapper: debug #配置mapper包的日志级别
+
+

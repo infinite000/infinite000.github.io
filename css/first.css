@@ -1,0 +1,136 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+
+.body1{
+	background-image:url(../img/bg-none.png) ;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 100vh;
+	
+	background-size: 100% 100%;
+	overflow: hidden;
+	position: relative;
+	}
+a{
+	text-decoration: none;
+	color: skyblue;
+}
+header{
+	height: 90px;
+	/* display: flex; */
+	color: skyblue;
+	text-align: center;
+}
+.header1{
+	float: left;
+	font-size: 35px;
+}
+.header2{
+	font-size: 50px;
+	/* background-color: #00FF00; */
+	line-height: 90px;
+	margin-left: -14rem;
+	margin-top: 55px;
+	font-weight: bold;
+}
+.time{
+	float: right;
+	font-size: 25px;
+	/* background-color: #0000FF; */
+}
+.footer{
+	display: flex;
+}
+.footer1{
+	width: 30%;
+	color: white;
+}
+.footer2{
+	width: 40%;
+	/* height: 100vh; */
+	/* background-color: #0000FF; */
+}
+.footer3{
+	width: 30%;
+	/* height: 100vh; */
+	/* background-color: #FFAA00; */
+}
+.left1{
+	display: flex;
+	height: 40%;
+	/* background-color: #91ED8F; */
+}
+.user{
+	margin-left: 30px;
+}
+.left2{
+	margin-top: 50px;
+	margin-bottom: 75px;
+}
+.left3{
+	margin-bottom: 1px;
+}
+.month{
+	height: 30vh;
+	/* background-color: #91ED8F; */
+	text-align: center;
+	/* float: right; */
+}
+.year{
+	height: 30vh;
+	/* background-color: #91ED8F; */
+	text-align: center;
+}
+.world{
+	width: 800px;
+	height: 800px;
+	/* border: 2px solid black; */
+	margin-top: 50px;
+}
+.div{
+	display: flex;
+}
+.type{
+	height: 150px;
+	width: 150px;
+	text-align: center;
+	color: white;
+	/* line-height: 150px; */
+	background-image: url(../img/jzxz1.png);
+	background-size: 100% 100%;
+	/* background-color: #0000ff; */
+}
+.marry{
+	height: 150px;
+	width: 150px;
+	text-align: center;
+	color: white;
+	/* line-height: 150px; */
+	background-image: url(../img/jzxz1.png);
+	background-size: 100% 100%;
+}
+.cloud{
+	height: 40vh;
+	text-align: center;
+	/* float: right; */
+}
+.le{
+	/* background-color: #0000FF; */
+	/* width: 200px;
+	height: 200px; */
+	float: left;
+	width: 300px;
+	height: 300px;
+}
+.le>img{
+	width: 100%;
+	height: 100%;
+	/* object-fit:cover; */
+}
+.tu{
+	float: left;
+}
+

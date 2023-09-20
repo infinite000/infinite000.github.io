@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/first.css"/>
+		<script src="js/login.js"></script>
+		<script src="js/echarts.min.js"></script>
+		<script src="js/echarts-gl.min.js"></script>
+		<script src="js/jquery-3.5.1.min.js"></script>
+		
+	</head>
+	<body class="body1">
+		<div class="app">
+			
+			<header>
+				<span class="header1">
+					<a href="text.html">&lt;返回登录</a>
+					<a href="http://10.24.33.80:9095/index.html#/aj/akdIRpmv">&lt;主页面</a>
+				</span>
+				<span class="header2">智慧天眼人脸识别主页</span>
+				<span class="time"></span>
+			</header>
+			<footer class="footer">
+				<div class="footer1">
+					<section class="left1">
+						<div>
+							<img src="img/person.png" /><br />
+							<img src="img/person.png" />
+						</div>
+						<div>
+							<table class="user">
+								
+							</table>
+						</div>
+					</section>
+					<section class="left2">
+						<marquee direction="up" >
+							<tr>
+								<th>ID</th>
+								<th>过往职业</th>
+								<th>时间</th>
+							</th>
+						</marquee>
+					</section>
+					<section class="left3">
+						<div>
+							<a href="http://10.24.33.37:9095/index.html#/aj/aq4U8mRT">医疗<img src="img/icon11.png" /></a>
+							<a href="http://10.24.32.141:9095/index.html#/aj/CwKTdgP1">金融<img src="img/icon1.png" /></a>
+							<a href="http://10.24.32.223:9095/index.html#/aj/dUVr9e9B">出行<img src="img/icon13.png" /></a>
+						</div>
+						<div>
+							<img src="img/icon15.png" />
+							<img src="img/icon16.png" />
+							<img src="img/icon14.png" />
+						</div>
+					</section>
+				</div>
+				<div class="footer2">
+					
+					<div class="world"></div>
+					<div class="div">
+						<div class="type"></div>
+						<div class="marry"></div>
+					</div>
+					
+				</div>
+				<div class="footer3">
+					<div class="month"></div>
+					<div class="year"></div>
+					<div class="cloud">
+						<div class="le">
+							<img src="img/leida.png" />
+						</div>
+						
+						<img src="img/ciyuntu.png" />
+						<div class="tu">
+							<img src="img/feiji.png" /><br />
+							<img src="img/huoche.png" />
+						</div>
+						
+					</div>
+				</div>
+			</footer>
+		</div>
+		
+		<script>
+			var fid = localStorage.getItem("fId");
+			// console.log(fid);
+			var monthEchart = echarts.init($(".month")[0]);
+			var yearEchart = echarts.init($(".year")[0]);
+			var worldEchart = echarts.init($(".world")[0]);
+			// var leiEchart = echarts.init(($(".lei")[0]));
+			if(fid==""||fid==0||fid==null){
+				alert("请先完成登录");
+				setTimeout(function(){
+					location.href = "text.html";
+				},1000)
+			}else{
+				function getUserbyfid(){
+					$.ajax({
+						url:'http://localhost:8000/getUser/'+fid,
+						type:'get',
+						success:function(res){
+							console.log(res);
+							$(".user").append(
+							'<tr><td>id:&nbsp;&nbsp;</td><td>'+res.fid+'</td></tr>'+
+							'<tr><td>姓名:&nbsp;&nbsp;</td><td>'+res.fname+'</td></tr>'+
+							'<tr><td>性别:&nbsp;&nbsp;</td><td>'+res.fsex+'</td></tr>'+
+							'<tr><td>身份证号码:&nbsp;&nbsp;</td><td>'+res.fcard+'</td></tr>'+
+							'<tr><td>年龄:&nbsp;&nbsp;</td><td>'+res.fage+'</td></tr>'+
+							'<tr><td>职业:&nbsp;&nbsp;</td><td>'+res.foccupation+'</td></tr>'+
+							'<tr><td>身高:&nbsp;&nbsp;</td><td>'+res.fheight+'</td></tr>'+
+							'<tr><td>住址:&nbsp;&nbsp;</td><td>'+res.faddress+'</td></tr>'+
+							'<tr><td>教育水平:&nbsp;&nbsp;</td><td>'+res.feducation+'</td></tr>'+
+							'<tr><td>出生日期:&nbsp;&nbsp;</td><td>'+res.fbirthday+'</td></tr>'+
+							'<tr><td>电话:&nbsp;&nbsp;</td><td>'+res.ftel+'</td></tr>')
+						},
+						error:function(){
+							alert("没有获取到用户信息")
+						}
+					})
+				}
+				getUserbyfid();
+				function getType(){
+					$.ajax({
+						url:'http://localhost:8000/getUser/'+fid,
+						type:'get',
+						success:function(res){
+							console.log(res);
+							$(".type").append(
+							'<h3>血型：&nbsp;&nbsp;</h3><h1>'+res.fbloodtype+'</h1>'
+							
+							)
+						},
+						error:function(){
+							alert("没有获取到用户信息")
+						}
+					})
+				}
+				getType();
+				function getMarry(){
+					$.ajax({
+						url:'http://localhost:8000/getUser/'+fid,
+						type:'get',
+						success:function(res){
+							console.log(res);
+							$(".marry").append(
+							
+							'<h3>婚姻：&nbsp;&nbsp;</h3><h1>'+res.fismarry+'</h1>'
+							)
+						},
+						error:function(){
+							alert("没有获取到用户信息")
+						}
+					})
+				}
+				getMarry();
+				function getResume(){
+					$.ajax({
+						url:'http://localhost:8000/getResume/'+fid,
+						type:'get',
+						success:function(res){
+							console.log(res);
+							for (var i = 0; i < res.length; i++) {
+								$("marquee").append(
+								'<tr><td>'+res[i].fuserid+'&nbsp;&nbsp;</td><td>'+res[i].fresume+'</td><td>'+res[i].ftime+'</td></tr>'+
+								'</hr>')
+							}
+							
+						},
+						error:function(){
+							alert("没有获取到resume信息")
+						}
+					})
+				}
+				getResume();
+				function getMonth(){
+					$.ajax({
+						url:'http://localhost:8000/getbyid?id='+fid,
+						type:'get',
+						success:function(res){
+							var xArr = res["月份"];
+							var yArr = res["消费"];
+							monthEchart.setOption({
+								title:{
+									text:'月消费柱状图',
+									subtext:'各月消费水平'
+								},
+								tooltip:{},
+								xAxis:{
+									data:xArr,
+								},
+								yAxis:{},
+								series:[
+									{
+										type:'bar',
+										data:yArr,
+									}
+								]
+							})
+						},
+						error:function(){
+							alert("月入消费数据出错");
+						}
+					})
+				}
+				getMonth();
+				function getYear(){
+					$.ajax({
+						url:'http://localhost:8000/getmoneybyid?id='+fid,
+						type:'get',
+						success:function(res){
+							var xArr1 = res["年份"];
+							var yArr1 = res["车贷"];
+							var yArr2 = res["饮食"];
+							var yArr3 = res["娱乐"];
+							var yArr4 = res["房贷"];
+							var yArr5 = res["工资"];
+							yearEchart.setOption({
+								title: {
+								    text: '折线图堆叠'
+								},
+								tooltip: {
+								    trigger: 'axis'
+								},
+								legend: {
+								    data: ['车贷', '饮食', '娱乐', '房贷', '工资']
+								},
+								grid: {
+								    left: '3%',
+								    right: '4%',
+								    bottom: '3%',
+								    containLabel: true
+								},
+								toolbox: {
+								    feature: {
+								        saveAsImage: {}
+								    }
+								},
+								xAxis: {
+								    type: 'category',
+								    boundaryGap: false,
+								    data: xArr1,
+								},
+								yAxis: {
+								    type: 'value'
+								},
+								series: [
+								    {
+								        name: '车贷',
+								        type: 'line',
+								        stack: '总量',
+								        data: yArr1
+								    },
+								    {
+								        name: '饮食',
+								        type: 'line',
+								        stack: '总量',
+								        data: yArr2
+								    },
+								    {
+								        name: '娱乐',
+								        type: 'line',
+								        stack: '总量',
+								        data: yArr3
+								    },
+								    {
+								        name: '房贷',
+								        type: 'line',
+								        stack: '总量',
+								        data: yArr4
+								    },
+								    {
+								        name: '工资',
+								        type: 'line',
+								        stack: '总量',
+								        data: yArr5
+								    }
+								]
+							})
+							
+							
+						},
+						error:function(){
+							alert("年度消费数据出错");
+						}
+					})
+				}
+				getYear();
+				option = {
+					// backgroundColor: 'aqua',
+				globe: {
+					baseTexture: 'img/earth/map01.jpg',
+					heightTexture: 'img/earth/bathymetry_bw_composite_4k.jpg',
+					displacementScale: 0.1,
+					shading: 'lambert',
+					// environment: 'img/earth/map02.jpg',
+					light: {
+						ambient: {
+							intensity: 0.1
+						},
+						main: {
+							intensity: 1.5
+						}
+					},
+					layers: [{
+							type: 'blend',
+							blendTo: 'emission',
+							texture: 'img/earth/map01.jpg'
+						},
+						{
+							type: 'overlay',
+							texture: 'img/earth/map01.png',
+							shading: 'lambert',
+							distance: 5
+						}
+					]
+				},
+				series: []
+			};
+			worldEchart.setOption(option);
+			// function getdietbyid(){
+			// 	$.ajax({
+			// 		url:'http://localhost:8000/selectDiet?id='+fid,
+			// 		type:'get',
+			// 		success:function(res){
+			// 			leiEchart.setOption({
+			// 			title : {
+			// 				text: ' 雷达图demo', //这里的参数是整个图标的标题 后面也可以加注释
+			// 				subtext: '888'
+			// 			},
+			// 			tooltip : {
+			// 			trigger: 'item',
+			// 			},
+			// 			legend: {
+			// 				orient : 'vertical', //这里主要是标识不同颜色代表不同的同学
+			// 				x : 'right',
+			// 				y : 'bottom',
+			// 				data:['A同学成绩 ', 'B同学成绩 ']
+			// 			},
+			// 			toolbox: {
+			// 			show : true,
+			// 			feature : {
+			// 				mark : {show: true},
+			// 				dataView : {show: true, readOnly: false},
+			// 				restore : {show: true},
+			// 				saveAsImage : {show: true},
+			// 				}
+			// 			},
+			// 			polar : [
+			// 				{
+			// 				indicator : [
+			// 				{ text: '素质必修课 ', max: 5.0, color: 'red'}, //这里用于设置各轴的参数以及最大值
+						
+			// 				{ text: '核心必修课 ', max: 5.0},
+			// 				{ text: '一般必修课 ', max: 5.0},
+			// 				{ text: '通识必修课', max: 5.0},
+			// 				{ text: '通识限选课', max: 5.0},
+			// 				]
+			// 			}
+			// 			],
+			// 			calculable : true,
+			// 			series : [
+			// 			{
+			// 			name: '预算 vs 开销（Budget vs spending）',
+			// 			type: 'radar',
+			// 			data : [
+			// 			{
+			// 			value : [3.5, 4.8, 3.2, 4.7, 4.5],
+			// 			name : 'A同学 '
+			// 			},
+			// 			{
+			// 			value : [4.2, 4.1, 3.9, 3.7, 3.5 ],
+			// 			name : 'B同学 '
+			// 			}
+			// 			]
+			// 			}
+			// 			]
+			// 			})
+			// 		},
+			// 		error:function(){
+			// 			alert("没有获取得到数值")
+			// 		}
+			// 	})
+			// }
+			// getdietbyid();
+			}
+		</script>
+	</body>
+</html>

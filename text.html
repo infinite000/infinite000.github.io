@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/login.css"/>
+		<script src="js/login.js"></script>
+		<script src="js/jquery-3.5.1.min.js"></script>
+		<script src="js/echarts.min.js"></script>
+		<script src="js/tracking-min.js"></script>
+		<script src="js/face-min.js"></script>
+		
+	</head>
+	<body class="main">
+		<!-- 
+		css的3大特点
+		1.层叠：      
+		2.继承：子元素会自动继承父类元素格式
+		3.冲突：通过不同选择器完成同一样式要看优先级 index
+		
+		opcity 透明度设置
+		
+		cursor:pointer 鼠标为手型
+		
+		display:
+		 -->
+		 <header class="title">智能人脸识别登录</header>
+		 <section >
+		 <div class="time"></div>
+		 <div class="imp">点击头像开始识别</div>
+		 <div class="face">
+			 <img src="img/121.png" />
+		 </div>
+		 <div class="circle">
+			 <img src="img/1233.png" />
+		 </div>
+		</section>
+		<div class="secImg">
+		<div class="demo-frame">
+			<div class="demo-container">
+				<video id="video"  preload autoplay loop muted></video>
+			</div>
+		</div>
+		<div class="control-container face-capture">
+			<canvas id="canvas"></canvas>
+		</div>
+		</div>
+		<script>
+			var tipFlag = false; // 提示用户已经检测到
+			var flag = false; // 判断是否已经拍照
+			//获取需要使用的元素节点
+			var video = document.getElementById('video');
+			//获取画布的元素节点
+			var canvas = document.getElementById('canvas');
+			var context = canvas.getContext('2d');
+			
+			//开启tracking的face人脸识别功能
+			var tracker = new tracking.ObjectTracker('face');
+			var width = window.screen.width;
+			var height = window.screen.height;
+			
+			$(".secImg").click(function(){
+				$('.imp').html('系统正在识别..')
+				startcamera();
+			})
+			
+			function startcamera(){
+				tracker.setInitialScale(4);
+				tracker.setStepSize(2);
+				tracker.setEdgesDensity(0.1);
+				
+				tracking.track('#video', tracker, {
+					camera: true
+				});
+				//检测人脸
+				//handleTracked检测函数
+				tracker.on('track', handleTracked);
+			}
+			
+			function handleTracked(e){
+				if(e.data.length==0){
+					$(".imp").html("未检测到人脸，请动一动")
+				}else{
+					// 清除画布中原始数据
+					context.clearRect(0, 0, canvas.width, canvas.height);
+					if(!tipFlag){
+						$(".imp").html("正在检测人脸，请稍等")
+					}
+					if(!flag){
+						flag = true;
+						setTimeout(function(){
+							takePhoto();
+							tipFlag = true;
+						},2000)
+					}
+				}
+			}
+			function takePhoto(){
+				var url;
+				//后台存储图片使用base64
+				context.drawImage(video, 0, 0, canvas.width, canvas.height)
+				url = canvas.toDataURL("image/png",0.3);
+				var urlArr = url.split(",")
+				url = urlArr[1];
+				$.ajax({
+					url:"http://localhost:8000/user/facerecognition",
+					type:'post',
+					data:{
+						imgUrl:url
+					},
+					success:function(res){
+						if(res==""||res==null){
+							$(".imp").html("人脸识别失败")
+						}else{
+							alert('识别成功,即将跳转...');
+							// console.log(res);
+							setTimeout(function(){
+								location.href = "success.html"
+								localStorage.setItem("fId",res.fid)
+							},2000)
+						}
+					},
+					error:function(){
+						alert("人脸识别访问失败");
+					}
+				})
+			}
+		</script>
+</html>
+<!-- http://10.24.32.223:9095/index.html#/aj/dUVr9e9B 出行-->
+<!-- http://10.24.32.141:9095/index.html#/aj/CwKTdgP1 金融-->
+<!-- http://10.24.33.37:9095/index.html#/aj/aq4U8mRT 医疗 -->

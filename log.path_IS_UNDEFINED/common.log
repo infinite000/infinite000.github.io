@@ -1,0 +1,25 @@
+2023-04-21 07:51:09 c.s.EyesApplication 50 [INFO] Starting EyesApplication on LAPTOP-OJFIV3HB with PID 12520 (D:\workspace\eysofgod\target\classes started by rui.campion in D:\workspace\eysofgod)
+ 2023-04-21 07:51:09 c.s.EyesApplication 647 [INFO] No active profile set, falling back to default profiles: default
+ 2023-04-21 07:51:11 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker 330 [INFO] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$5e658c26] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ 2023-04-21 07:51:12 o.s.b.w.e.t.TomcatWebServer 90 [INFO] Tomcat initialized with port(s): 8000 (http)
+ 2023-04-21 07:51:12 o.a.c.h.Http11NioProtocol 173 [INFO] Initializing ProtocolHandler ["http-nio-8000"]
+ 2023-04-21 07:51:12 o.a.c.c.StandardService 173 [INFO] Starting service [Tomcat]
+ 2023-04-21 07:51:12 o.a.c.c.StandardEngine 173 [INFO] Starting Servlet engine: [Apache Tomcat/9.0.22]
+ 2023-04-21 07:51:12 o.a.c.c.C.[.[.[/] 173 [INFO] Initializing Spring embedded WebApplicationContext
+ 2023-04-21 07:51:12 o.s.w.c.ContextLoader 284 [INFO] Root WebApplicationContext: initialization completed in 2946 ms
+ 2023-04-21 07:51:14 s.d.s.w.PropertySourcedRequestMappingHandlerMapping 69 [INFO] Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+ 2023-04-21 07:51:14 o.s.s.c.ThreadPoolTaskExecutor 171 [INFO] Initializing ExecutorService 'applicationTaskExecutor'
+ 2023-04-21 07:51:14 s.d.s.w.p.DocumentationPluginsBootstrapper 160 [INFO] Context refreshed
+ 2023-04-21 07:51:14 s.d.s.w.p.DocumentationPluginsBootstrapper 163 [INFO] Found 1 custom documentation plugin(s)
+ 2023-04-21 07:51:14 s.d.s.w.s.ApiListingReferenceScanner 41 [INFO] Scanning for api listing references
+ 2023-04-21 07:51:15 o.a.c.h.Http11NioProtocol 173 [INFO] Starting ProtocolHandler ["http-nio-8000"]
+ 2023-04-21 07:51:15 o.s.b.w.e.t.TomcatWebServer 202 [INFO] Tomcat started on port(s): 8000 (http) with context path ''
+ 2023-04-21 07:51:15 c.s.EyesApplication 59 [INFO] Started EyesApplication in 6.352 seconds (JVM running for 7.783)
+ 2023-04-21 07:51:40 o.a.c.c.C.[.[.[/] 173 [INFO] Initializing Spring DispatcherServlet 'dispatcherServlet'
+ 2023-04-21 07:51:40 o.s.w.s.DispatcherServlet 524 [INFO] Initializing Servlet 'dispatcherServlet'
+ 2023-04-21 07:51:40 o.s.w.s.DispatcherServlet 546 [INFO] Completed initialization in 15 ms
+ 2023-04-21 07:51:40 c.a.d.p.DruidDataSource 106 [INFO] {dataSource-1} inited
+ 2023-04-21 09:39:56 c.b.a.c.BaseClient 199 [INFO] get access_token success. current state: STATE_AIP_AUTH_OK
+ 2023-04-21 11:14:04 c.b.a.c.BaseClient 199 [INFO] get access_token success. current state: STATE_AIP_AUTH_OK
+ 2023-04-21 11:24:36 c.b.a.c.BaseClient 199 [INFO] get access_token success. current state: STATE_AIP_AUTH_OK
+ 

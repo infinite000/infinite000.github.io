@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soft.mapper.TbTrajectoryMapper">
+
+	<resultMap id="selecttravel" type="TbTrajectory" autoMapping="true">
+
+	</resultMap>
+	
+	<select id="getEarthData" resultMap="selecttravel">
+		SELECT
+		*
+		FROM
+		tb_trajectory
+		WHERE
+		tb_trajectory.f_userid = #{userid} AND
+ 		tb_trajectory.f_time BETWEEN date_sub(now(),interval 3 month) and now();
+	</select>
+</mapper>

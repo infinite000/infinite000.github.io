@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soft.mapper.TbFinanceMapper">
+
+	<select id="selectmonth" resultType="com.soft.bean.TbDiet">
+		-- 得到指定用户最新年份的全部消费情况
+		SELECT c.f_time,c.f_money FROM
+		(
+		select * from tb_finance where
+		DATE_FORMAT(f_time,'%Y-%m')>
+		DATE_FORMAT(date_sub(curdate(), interval 12 month),'%Y-%m')
+		) c
+		WHERE c.f_userid = #{param1} AND c.f_type = '支出'
+	</select>
+</mapper>
